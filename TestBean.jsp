@@ -57,11 +57,13 @@
                     xwater = Double.parseDouble(waterqua);
                     Water water = new Water();
                     water.setWaterqua(xwater);
-                    String waterprice = Double.toString(water.getWaterqua()*1.29);
-                    Cookie waterpricecookie = new Cookie("waterprice",waterprice);
+                    String waterprice = application.getInitParameter("waterprice");
+                    Double waterpricedouble = Double.parseDouble(waterprice);
+                    String totalwaterprice = Double.toString(water.getWaterqua()*waterpricedouble);
+                    Cookie waterpricecookie = new Cookie("waterprice",totalwaterprice);
                     waterpricecookie.setMaxAge(60*60*60*60);
                     response.addCookie(waterpricecookie);
-                    out.println("|"+water.getWaterqua()*1.29);
+                    out.println("|"+totalwaterprice);
             %>
             <%      
                     double total;
