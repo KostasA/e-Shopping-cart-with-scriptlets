@@ -67,7 +67,7 @@
             %>
             <%      
                     double total;
-                    total = cafe.getCafequa()*18.50 + sugar.getSugarqua()*6.95 + water.getWaterqua()*1.29;
+                    total = cafe.getCafequa()*cafepricedouble + sugar.getSugarqua()*sugarpricedouble + water.getWaterqua()*waterpricedouble;
                     String totalprice = Double.toString(total);
                     Cookie totalpricecookie = new Cookie("totalprice",totalprice);
                     totalpricecookie.setMaxAge(60*60*60*60);
