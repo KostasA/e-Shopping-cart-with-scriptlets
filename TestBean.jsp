@@ -43,11 +43,13 @@
                     xsugar = Double.parseDouble(sugarqua);
                     Sugar sugar = new Sugar();
                     sugar.setSugarqua(xsugar);
-                    String sugarprice = Double.toString(sugar.getSugarqua()*6.95);
-                    Cookie sugarpricecookie = new Cookie("sugarprice",sugarprice);
+                    String sugarprice = application.getInitParameter("sugarprice");
+                    Double sugarpricedouble = Double.parseDouble(sugarprice);
+                    String totalsugarprice = Double.toString(sugar.getSugarqua()*sugarpricedouble);
+                    Cookie sugarpricecookie = new Cookie("sugarprice",totalsugarprice);
                     sugarpricecookie.setMaxAge(60*60*60*60);
                     response.addCookie(sugarpricecookie);
-                    out.println("|"+sugar.getSugarqua()*6.95);
+                    out.println("|"+totalsugarprice);
             %>
             <%
                     double xwater;
