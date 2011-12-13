@@ -26,11 +26,13 @@
                     xcafe= Double.parseDouble(cafequa);
                     Cafe cafe = new Cafe();
                     cafe.setCafequa(xcafe);
-                    String cafeprice = Double.toString(cafe.getCafequa()*18.50);
-                    Cookie cafepricecookie = new Cookie("cafeprice",cafeprice);
+                    String cafeprice = application.getInitParameter("cafeprice");
+                    Double cafepricedouble = Double.parseDouble(cafeprice);
+                    String totalcafeprice = Double.toString(cafe.getCafequa()*cafepricedouble);
+                    Cookie cafepricecookie = new Cookie("cafeprice",totalcafeprice);
                     cafepricecookie.setMaxAge(60*60*60*60);
                     response.addCookie(cafepricecookie);
-                    out.println("|"+cafe.getCafequa()*18.50);
+                    out.println("|"+totalcafeprice);
             %>
             
             
