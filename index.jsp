@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>e-Shopping Cart</title>
+ 
         <script type="text/javascript">
 
 
@@ -41,11 +42,15 @@ function handleServerResponse() {
    }
 }
 </script>
+        
+        
+        
     </head>
-    <body align="center">
+    <body  align="center">
         <h1>e-Shopping Cart</h1>
-        <form name="myForm">
-            <table border="1" align="center">
+        <% Cookie[] cookies = request.getCookies(); %>
+        <form di="test" name="myForm">
+            <table border="1" align="center" >
                 <tr>
                     <td><b>Item</b></td>
                     <td><b>Price</b></td>
@@ -56,31 +61,100 @@ function handleServerResponse() {
                     <td>Cafe</td>
                     <td>18.50</td>
                     <td><input type="text" name="cafequa" value="0.0"></td>
-                    <td><input type="text" name="cafeprice" value="${cookie.cafequa.value}"></td>
+                    <td><input type="text" name="cafeprice" value="<%       
+                                                                            boolean cafecookon=false;
+                                                                            if(cookies!=null) {
+                                                                                for(int i=0;i<cookies.length;i++) {
+                                                                                        if ((cookies[i].getName()).equals("cafeprice")) {
+                                                                                            out.println(cookies[i].getValue());
+                                                                                            cafecookon=true;
+                                                                                            break;
+                                                                                        }
+                                                                                        
+                                                                                }
+                                                                                
+                                                                            }
+                                                                            if(!cafecookon) 
+                                                                                out.println(0.0); 
+                                                                            
+                                                                                   
+                                                                    %>"></td>
                 </tr>
                 <tr>
                     <td>Sugar</td>
                     <td>6.95</td>
                     <td><input type="text" name="sugarqua" value="0.0"></td>
-                    <td><input type="text" name="sugarprice" value="${cookie.sugarqua.value}" ></td>
+                    <td><input type="text" name="sugarprice" value="<%      boolean sugarcookon=false;
+                                                                            if(cookies!=null) {
+                                                                                for(int i=0;i<cookies.length;i++) {
+                                                                                        if ((cookies[i].getName()).equals("sugarprice")) {
+                                                                                            out.println(cookies[i].getValue());
+                                                                                            sugarcookon=true;
+                                                                                            break;
+                                                                                        }
+                                                                                       
+                                                                                }
+                                                                            }
+                                                                            if(!sugarcookon) 
+                                                                                out.println(0.0); 
+                                                                                
+                                                                    %>" ></td>
                 </tr>
                 <tr>
                     <td>Water</td>
                     <td>1.29</td>
                     <td><input type="text" name="waterqua" value="0.0"></td>
-                    <td><input type="text" name="waterprice" value="${cookie.waterqua.value}"></td>
+                    <td><input type="text" name="waterprice" value="<%      boolean watercookon=false;
+                                                                            if(cookies!=null) {
+                                                                                for(int i=0;i<cookies.length;i++) {
+                                                                                        if ((cookies[i].getName()).equals("waterprice")) {
+                                                                                            out.println(cookies[i].getValue());
+                                                                                            watercookon=true;
+                                                                                            break;
+                                                                                        }
+                                                                                        
+                                                                                }
+                                                                            }
+                                                                            if(!watercookon) 
+                                                                                out.println(0.0); 
+                                                                            
+                                                                    %>" ></td>
                 </tr>
-                <tr>
+                <tr >
                     <td><b>Total</b></td>
                     <td></td>
                     <td></td>
-                    <td><input type="text" name="totalprice" ></td>
+                    <td bgcolor="#3399FF"><input type="text" name="totalprice" value="<%      boolean totalcookon=false;
+                                                                            if(cookies!=null) {
+                                                                                for(int i=0;i<cookies.length;i++) {
+                                                                                        if ((cookies[i].getName()).equals("totalprice")) {
+                                                                                            out.println(cookies[i].getValue());
+                                                                                            totalcookon=true;
+                                                                                            break;
+                                                                                        }
+                                                                                        
+                                                                                }
+                                                                            }
+                                                                            if(!totalcookon) 
+                                                                                out.println(0.0); 
+                                                                          
+                                                                    %>" > </td>
                 </tr>
                
             </table> 
             <input type="button" value="Submit" onclick="javascript:ajaxFunction();" /><br>
         </form>
-         
+               
+                
+                <form>
+                      <input type="button" value="Info" onclick="window.location.href='http://kostasa89.wordpress.com/'""/> 
+                </form>
+                
+                
+                <form>
+                      <input type="button" value="Code" onclick="window.location.href='http://www.box.net/'"/> 
+                </form>       
         
     </body>
 </html>
+
