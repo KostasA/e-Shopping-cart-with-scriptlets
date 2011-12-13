@@ -1,12 +1,12 @@
 <%-- 
     Document   : TestBean
-    Created on : Dec 9, 2011, 9:48:16 PM
+    Created on : Dec 10, 2011, 5:37:40 AM
     Author     : konanast
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<%@ page import="foo.*" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,22 +14,65 @@
     </head>
     <body align="center">
         <h1>e-Shopping Cart</h1>
-        <jsp:useBean id="cafe" class="foo.Cafe" scope="application" />
-        <jsp:setProperty name="cafe" property="cafequa"/>
-        <jsp:useBean id="sugar" class="foo.Sugar" scope="application" />
-        <jsp:setProperty name="sugar" property="sugarqua"/>
-        <jsp:useBean id="water" class="foo.Water" scope="application" />
-        <jsp:setProperty name="water" property="waterqua"/>
-        
-        <!--tis kathetes grammes tis vazw gia na diaxwrisw to response text pou stelnei to ajax()
-        kai na xeiristw kalitera ta apotelesmata -->
-        
+      
            
-        |${cafe.cafequa * initParam.cafeprice} 
-        |${sugar.sugarqua * initParam.sugarprice}
-        |${water.waterqua * initParam.waterprice}
-        |${cafe.cafequa * initParam.cafeprice + sugar.sugarqua * initParam.sugarprice + water.waterqua * initParam.waterprice }
-        |
-        
+ 
+            
+            
+            
+            <% 
+                    double xcafe;
+                    String cafequa = request.getParameter("cafequa");
+                    xcafe= Double.parseDouble(cafequa);
+                    Cafe cafe = new Cafe();
+                    cafe.setCafequa(xcafe);
+                    String cafeprice = application.getInitParameter("cafeprice");
+                    Double cafepricedouble = Double.parseDouble(cafeprice);
+                    String totalcafeprice = Double.toString(cafe.getCafequa()*cafepricedouble);
+                    Cookie cafepricecookie = new Cookie("cafeprice",totalcafeprice);
+                    cafepricecookie.setMaxAge(60*60*60*60);
+                    response.addCookie(cafepricecookie);
+                    out.println("|"+totalcafeprice);
+            %>
+            
+            
+                    
+            <% 
+                    double xsugar;
+                    String sugarqua = request.getParameter("sugarqua");
+                    xsugar = Double.parseDouble(sugarqua);
+                    Sugar sugar = new Sugar();
+                    sugar.setSugarqua(xsugar);
+                    String sugarprice = application.getInitParameter("sugarprice");
+                    Double sugarpricedouble = Double.parseDouble(sugarprice);
+                    String totalsugarprice = Double.toString(sugar.getSugarqua()*sugarpricedouble);
+                    Cookie sugarpricecookie = new Cookie("sugarprice",totalsugarprice);
+                    sugarpricecookie.setMaxAge(60*60*60*60);
+                    response.addCookie(sugarpricecookie);
+                    out.println("|"+totalsugarprice);
+            %>
+            <%
+                    double xwater;
+                    String waterqua = request.getParameter("waterqua");
+                    xwater = Double.parseDouble(waterqua);
+                    Water water = new Water();
+                    water.setWaterqua(xwater);
+                    String waterprice = application.getInitParameter("waterprice");
+                    Double waterpricedouble = Double.parseDouble(waterprice);
+                    String totalwaterprice = Double.toString(water.getWaterqua()*waterpricedouble);
+                    Cookie waterpricecookie = new Cookie("waterprice",totalwaterprice);
+                    waterpricecookie.setMaxAge(60*60*60*60);
+                    response.addCookie(waterpricecookie);
+                    out.println("|"+totalwaterprice);
+            %>
+            <%      
+                    double total;
+                    total = cafe.getCafequa()*cafepricedouble + sugar.getSugarqua()*sugarpricedouble + water.getWaterqua()*waterpricedouble;
+                    String totalprice = Double.toString(total);
+                    Cookie totalpricecookie = new Cookie("totalprice",totalprice);
+                    totalpricecookie.setMaxAge(60*60*60*60);
+                    response.addCookie(totalpricecookie);
+                    out.println("|"+total+"|");
+            %>
     </body>
 </html>
