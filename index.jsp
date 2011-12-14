@@ -147,13 +147,13 @@ function handleServerResponse() {
                
                 
                 <form>
-                      <input type="button" value="Info" onclick="window.location.href='http://kostasa89.wordpress.com/'""/> 
+                      <input type="button" value="Info" onclick="window.location.href='http://kostasa89.wordpress.com/2011/12/14/project-3/'""/> 
                 </form>
                 
                 
                 <form>
-                      <input type="button" value="Code" onclick="window.location.href='http://www.box.net/'"/> 
-                </form>       
+                      <input type="button" value="Code" onclick="window.location.href='http://www.box.com/s/ta4dxaei074gehobyr9b'"/> 
+                </form>        
         
     </body>
 </html>
